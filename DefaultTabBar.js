@@ -1,14 +1,14 @@
-const React = require('react');
-const { ViewPropTypes } = ReactNative = require('react-native');
-const PropTypes = require('prop-types');
-const createReactClass = require('create-react-class');
-const {
+import React from 'react';
+import { TextPropTypes, ViewPropTypes, } from 'deprecated-react-native-prop-types';
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
+import {
   StyleSheet,
   Text,
   View,
   Animated,
-} = ReactNative;
-const Button = require('./Button');
+} from 'react-native';
+import Button from './Button';
 
 const DefaultTabBar = createReactClass({
   propTypes: {
@@ -18,7 +18,7 @@ const DefaultTabBar = createReactClass({
     backgroundColor: PropTypes.string,
     activeTextColor: PropTypes.string,
     inactiveTextColor: PropTypes.string,
-    textStyle: Text.propTypes.style,
+    textStyle: TextPropTypes.style,
     tabStyle: ViewPropTypes.style,
     renderTab: PropTypes.func,
     underlineStyle: ViewPropTypes.style,
@@ -59,9 +59,10 @@ const DefaultTabBar = createReactClass({
   render() {
     const containerWidth = this.props.containerWidth;
     const numberOfTabs = this.props.tabs.length;
+    const safeWidth = numberOfTabs ? containerWidth / numberOfTabs : 0;
     const tabUnderlineStyle = {
       position: 'absolute',
-      width: containerWidth / numberOfTabs,
+      width: safeWidth,
       height: 4,
       backgroundColor: 'navy',
       bottom: 0,
@@ -69,7 +70,7 @@ const DefaultTabBar = createReactClass({
 
     const translateX = this.props.scrollValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [0,  containerWidth / numberOfTabs],
+      outputRange: [0,  safeWidth],
     });
     return (
       <View style={[styles.tabs, {backgroundColor: this.props.backgroundColor, }, this.props.style, ]}>

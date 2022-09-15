@@ -1,8 +1,8 @@
-const React = require('react');
-const { ViewPropTypes, } = ReactNative = require('react-native');
-const PropTypes = require('prop-types');
-const createReactClass = require('create-react-class');
-const {
+import React from 'react';
+import { TextPropTypes, ViewPropTypes, } from 'deprecated-react-native-prop-types';
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
+import {
   View,
   Animated,
   StyleSheet,
@@ -10,8 +10,8 @@ const {
   Text,
   Platform,
   Dimensions,
-} = ReactNative;
-const Button = require('./Button');
+} from 'react-native';
+import Button from './Button';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
@@ -27,7 +27,7 @@ const ScrollableTabBar = createReactClass({
     style: ViewPropTypes.style,
     tabStyle: ViewPropTypes.style,
     tabsContainerStyle: ViewPropTypes.style,
-    textStyle: Text.propTypes.style,
+    textStyle: TextPropTypes.style,
     renderTab: PropTypes.func,
     underlineStyle: ViewPropTypes.style,
     onScroll: PropTypes.func,

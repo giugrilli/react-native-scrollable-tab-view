@@ -1,25 +1,21 @@
-const React = require('react');
-const { Component } = React;
-const { ViewPropTypes } = ReactNative = require('react-native');
-const createReactClass = require('create-react-class');
-const PropTypes = require('prop-types');
-const {
+import React from 'react';
+import { ViewPropTypes, } from 'deprecated-react-native-prop-types';
+import createReactClass from 'create-react-class';
+import PropTypes from 'prop-types';
+import {
   Dimensions,
   View,
   Animated,
-  ScrollView,
   Platform,
   StyleSheet,
-  InteractionManager,
-} = ReactNative;
+} from 'react-native';
 
-const ViewPagerAndroid = require('@react-native-community/viewpager');
-const TimerMixin = require('react-timer-mixin');
-const ViewPager = require('@react-native-community/viewpager');
+import TimerMixin from 'react-timer-mixin';
+import ViewPager from 'react-native-pager-view';
 
-const SceneComponent = require('./SceneComponent');
-const DefaultTabBar = require('./DefaultTabBar');
-const ScrollableTabBar = require('./ScrollableTabBar');
+import SceneComponent from './SceneComponent';
+import DefaultTabBar from './DefaultTabBar';
+import ScrollableTabBar from './ScrollableTabBar';
 
 const AnimatedViewPagerAndroid = Platform.OS === 'android' ?
   Animated.createAnimatedComponent(ViewPager) :
