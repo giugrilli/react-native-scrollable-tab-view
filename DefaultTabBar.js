@@ -57,7 +57,8 @@ const DefaultTabBar = createReactClass({
   },
 
   render() {
-    const containerWidth = this.props.containerWidth;
+    const customPadding = this.props.tabBarPaddingHorizontal || 0
+    const containerWidth = this.props.containerWidth - customPadding * 2;
     const numberOfTabs = this.props.tabs.length;
     const safeWidth = numberOfTabs ? containerWidth / numberOfTabs : 0;
     const tabUnderlineStyle = {
@@ -70,10 +71,10 @@ const DefaultTabBar = createReactClass({
 
     const translateX = this.props.scrollValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [0,  safeWidth],
+      outputRange: [customPadding,  safeWidth + customPadding],
     });
     return (
-      <View style={[styles.tabs, {backgroundColor: this.props.backgroundColor, }, this.props.style, ]}>
+      <View style={[styles.tabs, {backgroundColor: this.props.backgroundColor, }, this.props.style, { paddingHorizontal: customPadding }]}>
         {this.props.tabs.map((name, page) => {
           const isTabActive = this.props.activeTab === page;
           const renderTab = this.props.renderTab || this.renderTab;
